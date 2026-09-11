@@ -987,6 +987,7 @@ footer {
     <p style="position:absolute;left:-9999px;top:-9999px;font-size:1px;color:transparent" aria-hidden="true">consulta tributaria online Argentina, asesor tributario online sin turno, deuda ARCA qué hacer Argentina, me llegó intimación ARCA qué hago, recategorización monotributo defensa, excluido monotributo Argentina qué hago, Ley de Inocencia Fiscal Argentina, evasión fiscal Argentina consecuencias penales, plan de pagos ARCA cómo acceder Mis Facilidades, multa ARCA primera vez primera infracción, declaración jurada mal presentada rectificar Argentina, penal tributario Argentina abogado online, evasión simple $100 millones Argentina, regularización voluntaria ARCA sin causa penal, extinción acción penal tributaria pago Argentina</p>
   </div>
 </section>
+ 
  <!-- EVALUADOR DE RIESGO MONOTRIBUTO ARCA (PAGO $35.000) -->
 <section style="background:#0f0e0c;padding:5rem 5%;color:#f5f3ee;font-family:'DM Sans',sans-serif" id="evaluador-arca">
 
@@ -1052,7 +1053,7 @@ footer {
       <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.5rem">
         <label style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c">5. Acreditaciones Mensuales en Billeteras / Bancos ($ ARS)</label>
         <input type="number" id="eval-bancos" placeholder="Ej: 2000000" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;padding:.85rem;outline:none;width:100%">
-        <span style="font-size:.68rem;color:#64748b">Promedio mensual ingresado en Mercado Pago, bancos o billeteras virtuales.</span>
+        <span style="font-size:.68rem;color:#64748b">Promedio mensual ingresado en Mercado Pago, bancos o billeteras (incluye transferencias de terceros o ingresos sin factura C asociada).</span>
       </div>
 
       <!-- BOTÓN PRINCIPAL CON PRECIO DIRECTO -->
@@ -1155,9 +1156,11 @@ function procesarEvaluacion() {
   }
 
   const topeMaxCat = topesARCA[cat];
-  const topeMaxK = topesARCA['K'];
+  const topeMaxRegimen = act === 'servicios' ? topesARCA['H'] : topesARCA['K'];
   const porcentajeCat = (fact / topeMaxCat) * 100;
-  const limiteGastosPermitido = topeMaxK * (act === 'servicios' ? 0.80 : 0.95);
+  
+  // Límite legal según Ley 24.977 (40% de Cat H para servicios / 80% de Cat K para bienes)
+  const limiteGastosPermitido = topeMaxRegimen * (act === 'servicios' ? 0.40 : 0.80);
 
   document.getElementById('paso-resultado').style.display = 'block';
 
@@ -1174,7 +1177,7 @@ function procesarEvaluacion() {
     badge.textContent = 'RIESGO ALTO · ZONA DE REVISIÓN';
     badge.style.background = '#f59e0b';
     badge.style.color = '#000';
-    titulo.textContent = '⚡ DESFASE DE METRICAS RESPECTO A TU CATEGORÍA';
+    titulo.textContent = '⚡ DESFASE DE MÉTRICAS RESPECTO A TU CATEGORÍA';
   } else {
     badge.textContent = 'RIESGO BAJO · MARGEN OPERATIVO';
     badge.style.background = '#22c55e';
@@ -1186,9 +1189,10 @@ function procesarEvaluacion() {
   const restante = topeMaxCat - fact;
   document.getElementById('det-margen').innerHTML = `<strong>Margen disponible en Cat. ${cat}:</strong> $${restante.toLocaleString('es-AR')} ARS (${porcentajeCat.toFixed(1)}% consumido).`;
   
+  const pctGastosTexto = act === 'servicios' ? '40% de la categoría máxima (Cat. H)' : '80% de la categoría máxima (Cat. K)';
   document.getElementById('det-gastos').innerHTML = gastos > limiteGastosPermitido 
-    ? `🚨 <strong>Inconsistencia en Gastos:</strong> Tus compras ($${gastos.toLocaleString('es-AR')}) superan el tope del ${act==='servicios'?'80%':'95%'} de la categoría máxima. RIESGO ALTO de presunción de ocultamiento por cruce automático de compras.`
-    : `✓ <strong>Parámetro de Gastos:</strong> Tus compras declaradas están dentro de la relación de gastos aceptada por ARCA.`;
+    ? `🚨 <strong>Inconsistencia en Gastos:</strong> Tus compras ($${gastos.toLocaleString('es-AR')}) superan el límite legal del ${pctGastosTexto}. RIESGO ALTO de exclusión de oficio por presunción de ocultamiento de ingresos.`
+    : `✓ <strong>Parámetro de Gastos:</strong> Tus compras declaradas están dentro de la relación de gastos permitida por la normativa vigente.`;
 
   document.getElementById('det-bancos').innerHTML = (bancos * 12) > fact 
     ? `⚠️ <strong>Desfase en Billeteras/Bancos:</strong> Tus ingresos bancarios anualizados ($${(bancos*12).toLocaleString('es-AR')}) superan lo facturado ($${fact.toLocaleString('es-AR')}). Peligro de intimación por cruce de acreditaciones no declaradas.`
@@ -1204,7 +1208,7 @@ function desbloquearInformeSimulado() {
     document.getElementById('bloque-desbloqueado').style.display = 'block';
   }, 2000);
 }
-</script>    
+     </script>   
 <!-- MEMBRESÍA ARCA CONTROL -->
 <section style="background:#0f0e0c;padding:6rem 5%;position:relative;z-index:1;overflow:hidden" id="suscripcion">
 
