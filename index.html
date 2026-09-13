@@ -598,6 +598,7 @@ footer {
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">ARCA<span>SIN</span>MIEDO.online</a>
+    <a href="#calculadora" style="color:rgba(255,255,255,0.7);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-right:1.5rem">Calculadora</a>
   <a href="#formulario" class="nav-cta">Consultar ahora →</a>
 </nav>
 
@@ -988,42 +989,49 @@ footer {
   </div>
 </section>
  
- <!-- EVALUADOR DE RIESGO MONOTRIBUTO ARCA (PAGO $35.000) -->
-<section style="background:#0f0e0c;padding:5rem 5%;color:#f5f3ee;font-family:'DM Sans',sans-serif" id="evaluador-arca">
+ <!-- CALCULADORA DE RIESGO MONOTRIBUTO -->
+<section id="calculadora" style="background:#0a0c0f;padding:6rem 5%;position:relative;z-index:1;overflow:hidden">
 
-  <div style="max-width:700px;margin:0 auto;text-align:center;margin-bottom:2.5rem">
-    <p style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#c9a84c;margin-bottom:.5rem">Diagnóstico Técnico Anónimo</p>
-    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);letter-spacing:.04em;line-height:1;margin:0">
-      EVALUADOR DE RIESGO Y MARGEN <span style="color:#c9a84c">MONOTRIBUTO ARCA</span>
+  <div style="position:absolute;top:-50%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none"></div>
+
+  <!-- ENCABEZADO -->
+  <div style="text-align:center;margin-bottom:3rem;position:relative;z-index:1">
+    <span style="display:inline-flex;align-items:center;gap:.7rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#c9a84c;margin-bottom:1.2rem">
+      <span style="display:block;width:24px;height:1px;background:#c9a84c"></span>
+      Evaluación Preliminar Gratuita
+    </span>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,4.5rem);letter-spacing:.04em;line-height:1;color:#f5f3ee;margin:0 0 1rem">
+      ¿CUÁNTO TE FALTA PARA QUE<br><span style="color:#c9a84c">ARCA TE EXCLUYA?</span>
     </h2>
-    <p style="color:#64748b;font-size:.9rem;margin-top:.8rem;line-height:1.6">
-      Sin ingresar nombre, CUIT ni mail. Evaluá tus métricas contra los algoritmos de exclusión de ARCA en tiempo real.
+    <p style="color:#64748b;font-size:.95rem;max-width:580px;margin:0 auto;line-height:1.8">
+      Cargá tus datos y calculá al instante tu nivel de riesgo preliminar. 100% anónimo, sin registro ni datos personales.
     </p>
   </div>
 
-  <div style="max-width:650px;margin:0 auto;background:#141418;border:1px solid rgba(201,168,76,0.25);padding:2rem;position:relative">
-    
-    <!-- AVISO CLAVE SOBRE CRUCES DE ARCA -->
-    <div style="background:rgba(201,168,76,0.08);border-left:3px solid #c9a84c;padding:1rem;margin-bottom:1.8rem">
-      <p style="font-size:.82rem;color:#e2e8f0;line-height:1.5;margin:0">
-        💡 <strong>Dato clave de control fiscal:</strong> Tené en cuenta que ARCA no solo mira lo que facturás, sino también lo que comprás y lo que movés en los bancos o billeteras virtuales. Los algoritmos de exclusión cruzan automáticamente todos tus movimientos.
-      </p>
-    </div>
+  <!-- AVISO DATO CLAVE -->
+  <div style="max-width:720px;margin:0 auto 3rem;padding:1rem 1.5rem;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-left:4px solid #c9a84c;font-size:.83rem;color:#94a3b8;line-height:1.7;position:relative;z-index:1">
+    💡 <strong style="color:#c9a84c">Dato clave:</strong> ARCA no solo mira lo que facturás. Cruza tu facturación con tus compras, tus acreditaciones en bancos y billeteras como Mercado Pago, y tu consumo eléctrico. Si cualquier parámetro supera el límite, la exclusión es automática.
+  </div>
 
-    <!-- PASO 1: INPUTS ANÓNIMOS -->
-    <div id="paso-inputs">
-      
-      <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem">
-        <label style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c">1. Tipo de Actividad Registrada</label>
-        <select id="eval-actividad" onchange="actualizarCategoriasDisponibles()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;padding:.85rem;outline:none;width:100%">
+  <!-- FORMULARIO CALCULADORA -->
+  <div style="max-width:720px;margin:0 auto;position:relative;z-index:1">
+    <div style="background:#0f1318;border:1px solid rgba(255,255,255,0.08);padding:2.5rem">
+
+      <!-- Campo 1 -->
+      <div style="margin-bottom:1.5rem">
+        <label style="display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:.6rem">1. Tipo de actividad registrada *</label>
+        <select id="calc-tipo" style="width:100%;background:#070a0d;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;font-family:'DM Sans',sans-serif;font-size:.9rem;padding:.85rem 1rem;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;box-sizing:border-box">
+          <option value="">— Seleccioná tu actividad —</option>
           <option value="servicios">Prestación de Servicios / Profesionales / Locaciones</option>
           <option value="bienes">Venta de Cosas Muebles / Comercio / E-commerce</option>
         </select>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem">
-        <label style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c">2. Categoría Actual en Monotributo</label>
-        <select id="eval-categoria" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;padding:.85rem;outline:none;width:100%">
+      <!-- Campo 2 -->
+      <div style="margin-bottom:1.5rem">
+        <label style="display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:.6rem">2. Categoría actual en Monotributo *</label>
+        <select id="calc-categoria" style="width:100%;background:#070a0d;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;font-family:'DM Sans',sans-serif;font-size:.9rem;padding:.85rem 1rem;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;box-sizing:border-box">
+          <option value="">— Seleccioná tu categoría —</option>
           <option value="A">Categoría A</option>
           <option value="B">Categoría B</option>
           <option value="C">Categoría C</option>
@@ -1031,184 +1039,188 @@ footer {
           <option value="E">Categoría E</option>
           <option value="F">Categoría F</option>
           <option value="G">Categoría G</option>
-          <option value="H" selected>Categoría H (Máximo Servicios)</option>
-          <option value="I" class="opt-bienes">Categoría I (Solo Bienes)</option>
-          <option value="J" class="opt-bienes">Categoría J (Solo Bienes)</option>
-          <option value="K" class="opt-bienes">Categoría K (Máximo Bienes)</option>
+          <option value="H">Categoría H (Máximo Servicios)</option>
+          <option value="I">Categoría I (Solo Bienes)</option>
+          <option value="J">Categoría J (Solo Bienes)</option>
+          <option value="K">Categoría K (Máximo Bienes)</option>
         </select>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem">
-        <label style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c">3. Facturación Acumulada Últimos 12 Meses ($ ARS)</label>
-        <input type="number" id="eval-facturacion" placeholder="Ej: 18000000" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;padding:.85rem;outline:none;width:100%">
-        <span style="font-size:.68rem;color:#64748b">Sumatoria de facturas emitidas tipo "C" en los últimos 365 días.</span>
+      <!-- Campo 3 -->
+      <div style="margin-bottom:1.5rem">
+        <label style="display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:.4rem">3. Facturación acumulada últimos 12 meses ($ ARS) *</label>
+        <p style="font-size:.75rem;color:#64748b;margin:0 0 .6rem">Sumatoria de facturas tipo C emitidas en los últimos 365 días.</p>
+        <input type="number" id="calc-facturacion" placeholder="Ej: 4500000" min="0" style="width:100%;background:#070a0d;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;font-family:'DM Sans',sans-serif;font-size:.9rem;padding:.85rem 1rem;outline:none;box-sizing:border-box">
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem">
-        <label style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c">4. Compras y Gastos Acumulados Últimos 12 Meses ($ ARS)</label>
-        <input type="number" id="eval-gastos" placeholder="Ej: 12000000" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;padding:.85rem;outline:none;width:100%">
-        <span style="font-size:.68rem;color:#64748b">Facturas de compras recibidas + alquileres vinculados a la actividad.</span>
+      <!-- Campo 4 -->
+      <div style="margin-bottom:1.5rem">
+        <label style="display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:.4rem">4. Compras y gastos acumulados últimos 12 meses ($ ARS) *</label>
+        <p style="font-size:.75rem;color:#64748b;margin:0 0 .6rem">Facturas de compra recibidas + alquileres vinculados a la actividad.</p>
+        <input type="number" id="calc-gastos" placeholder="Ej: 2000000" min="0" style="width:100%;background:#070a0d;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;font-family:'DM Sans',sans-serif;font-size:.9rem;padding:.85rem 1rem;outline:none;box-sizing:border-box">
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.5rem">
-        <label style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c">5. Acreditaciones Mensuales en Billeteras / Bancos ($ ARS)</label>
-        <input type="number" id="eval-bancos" placeholder="Ej: 2000000" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#e2e8f0;padding:.85rem;outline:none;width:100%">
-        <span style="font-size:.68rem;color:#64748b">Promedio mensual ingresado en Mercado Pago, bancos o billeteras (incluye transferencias de terceros o ingresos sin factura C asociada).</span>
+      <!-- Campo 5 -->
+      <div style="margin-bottom:2rem">
+        <label style="display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c;margin-bottom:.4rem">5. Acreditaciones mensuales en billeteras / bancos ($ ARS) *</label>
+        <p style="font-size:.75rem;color:#64748b;margin:0 0 .6rem">Promedio mensual en Mercado Pago, bancos o billeteras (incluye transferencias sin factura asociada).</p>
+        <input type="number" id="calc-acreditaciones" placeholder="Ej: 350000" min="0" style="width:100%;background:#070a0d;border:1px solid rgba(255,255,255,0.08);color:#e2e8f0;font-family:'DM Sans',sans-serif;font-size:.9rem;padding:.85rem 1rem;outline:none;box-sizing:border-box">
       </div>
 
-      <!-- BOTÓN PRINCIPAL CON PRECIO DIRECTO -->
-      <button onclick="procesarEvaluacion()" style="width:100%;background:#c9a84c;color:#0f0e0c;border:none;font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.08em;padding:1rem;cursor:pointer">
-        GENERAR DIAGNÓSTICO DE RIESGO · $35.000 ARS
+      <!-- BOTÓN GENERAR -->
+      <button onclick="generarDiagnostico()" style="width:100%;background:#c9a84c;color:#0a0c0f;border:none;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.12em;padding:1.1rem;cursor:pointer;transition:background .25s">
+        VER MI DIAGNÓSTICO PRELIMINAR GRATIS
       </button>
-      <span style="display:block;text-align:center;font-size:.7rem;color:#64748b;margin-top:.5rem">
-        Honorarios por informe técnico e interactivo de evaluación fiscal.
-      </span>
-
+      <p style="text-align:center;font-size:.7rem;color:#64748b;margin-top:.6rem;margin-bottom:0">
+        Obtené tu nivel de riesgo y consumo de escala al instante. Opción de informe técnico completo al finalizar.
+      </p>
     </div>
 
-    <!-- PASO 2: INFORME / MURO DE PAGO ($35.000) -->
-    <div id="paso-resultado" style="display:none;margin-top:1.5rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem">
-      
-      <div style="text-align:center;margin-bottom:1.5rem">
-        <span id="res-badge-nivel" style="font-size:.75rem;padding:.3rem .8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:bold"></span>
-        <h3 id="res-titulo-riesgo" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-top:.8rem;margin-bottom:0"></h3>
-      </div>
+    <!-- RESULTADO PRELIMINAR — visible ANTES del pago -->
+    <div id="calc-resultado" style="display:none;margin-top:1.5rem">
+      <div id="calc-alerta-box" style="padding:2rem;border:2px solid #ef4444;background:rgba(239,68,68,0.08);margin-bottom:1.5rem">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+          <span id="calc-icono" style="font-size:2rem">⚠️</span>
+          <div>
+            <p style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#94a3b8;margin:0 0 .2rem">Diagnóstico preliminar gratuito</p>
+            <h3 id="calc-nivel" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.05em;margin:0;color:#ef4444">RIESGO ALTO</h3>
+          </div>
+        </div>
+        <p id="calc-mensaje-previo" style="font-size:.88rem;color:#e2e8f0;line-height:1.75;margin:0 0 1.2rem"></p>
 
-      <!-- VISTA BLOQUEADA (BLUR) -->
-      <div style="position:relative;background:rgba(0,0,0,0.4);padding:1.5rem;border:1px dashed rgba(201,168,76,0.3);overflow:hidden">
-        
-        <div id="bloque-borroso" style="filter:blur(5px);pointer-events:none;user-select:none">
-          <p style="font-weight:bold;margin-bottom:.5rem">Margen Disponible para Facturar: <span style="color:#c9a84c">$XX.XXX.XXX ARS</span></p>
-          <p style="font-size:.85rem;line-height:1.6">Porcentaje de escala consumida: XX%</p>
-          <div style="height:8px;background:#333;margin:1rem 0;border-radius:4px"><div style="width:75%;height:100%;background:#f59e0b"></div></div>
-          <p style="font-size:.85rem;font-weight:bold;margin-top:1rem">CHECKLIST DE CRUCES AUTOMÁTICOS ARCA:</p>
-          <ul style="font-size:.8rem;line-height:1.7;padding-left:1.2rem">
-            <li>[!] Parámetro Gastos vs Facturación: Evaluación reservada...</li>
-            <li>[!] Cruzamiento de Billeteras/Bancos: Evaluación reservada...</li>
-            <li>[!] Límite de Permanencia en el Régimen: Evaluación reservada...</li>
+        <!-- Barra de progreso -->
+        <div style="margin-bottom:1.5rem">
+          <div style="display:flex;justify-content:space-between;font-size:.72rem;color:#64748b;margin-bottom:.4rem">
+            <span>Escala consumida</span>
+            <span id="calc-porcentaje-texto">---%</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);height:8px;border-radius:4px;overflow:hidden">
+            <div id="calc-barra" style="height:100%;background:#ef4444;transition:width 1s ease;width:0%"></div>
+          </div>
+        </div>
+
+        <!-- Vista previa bloqueada -->
+        <div style="background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);padding:1.2rem;margin-bottom:1.5rem">
+          <p style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin:0 0 .8rem">Checklist de cruces automáticos ARCA</p>
+          <div style="display:flex;flex-direction:column;gap:.5rem">
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.83rem;color:#94a3b8;filter:blur(3px)">⚠️ Parámetro Gastos vs Facturación: Evaluando...</div>
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.83rem;color:#94a3b8;filter:blur(3px)">⚠️ Cruce Billeteras / Bancos: Evaluando...</div>
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.83rem;color:#94a3b8;filter:blur(3px)">⚠️ Límite de permanencia en el régimen: Evaluando...</div>
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.83rem;color:#94a3b8;filter:blur(3px)">⚠️ Precio unitario máximo: Evaluando...</div>
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.83rem;color:#94a3b8;filter:blur(3px)">⚠️ Consistencia fiscal global: Evaluando...</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.8rem;font-size:.75rem;color:#64748b">
+            🔒 Bloqueado · Desbloqueá con el informe detallado
+          </div>
+        </div>
+
+        <!-- Qué incluye el informe desbloqueado -->
+        <div style="background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);padding:1.2rem;margin-bottom:1.5rem">
+          <p style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#c9a84c;margin:0 0 .8rem">¿Querés un análisis detallado? Al desbloquear recibís</p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem">
+            <li style="font-size:.83rem;color:#e2e8f0;display:flex;gap:.7rem"><span style="color:#c9a84c;flex-shrink:0">✓</span>Margen exacto disponible hasta el tope de exclusión</li>
+            <li style="font-size:.83rem;color:#e2e8f0;display:flex;gap:.7rem"><span style="color:#c9a84c;flex-shrink:0">✓</span>Porcentaje de escala consumida por parámetro</li>
+            <li style="font-size:.83rem;color:#e2e8f0;display:flex;gap:.7rem"><span style="color:#c9a84c;flex-shrink:0">✓</span>Checklist completo de 5 cruces automáticos ARCA</li>
+            <li style="font-size:.83rem;color:#e2e8f0;display:flex;gap:.7rem"><span style="color:#c9a84c;flex-shrink:0">✓</span>Nivel de riesgo por parámetro individual</li>
+            <li style="font-size:.83rem;color:#e2e8f0;display:flex;gap:.7rem"><span style="color:#c9a84c;flex-shrink:0">✓</span>Recomendaciones específicas para tu actividad</li>
           </ul>
         </div>
 
-        <!-- CAPA SOBREPUESTA / BOTÓN PAGO $35.000 -->
-        <div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(15,14,12,0.85);padding:1rem;box-sizing:border-box;text-align:center">
-          <p style="font-size:.85rem;color:#f5f3ee;margin-bottom:.8rem;font-weight:500">
-            🔒 Para desbloquear el informe de margen, porcentaje exacto y el checklist de cruce sistémico de ARCA:
-          </p>
-          
-          <!-- LINK DE MERCADO PAGO INTEGRADO -->
-          <a id="link-pago-evaluador" href="https://mpago.la/2GEgrGn" target="_blank" onclick="desbloquearInformeSimulado()" style="background:#c9a84c;color:#0f0e0c;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.1em;padding:.9rem 1.8rem;text-decoration:none;display:inline-block">
-            DESBLOQUEAR MI INFORME COMPLETO · $35.000
-          </a>
-          <span style="font-size:.68rem;color:#64748b;margin-top:.6rem">Pago único mediante MercadoPago · Acceso instantáneo en pantalla</span>
-        </div>
-
+        <!-- BOTÓN DESBLOQUEAR -->
+        <a href="https://mpago.la/2GEgrGn" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;padding:1.1rem;background:#c9a84c;color:#0a0c0f;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.1em;text-decoration:none;box-sizing:border-box;margin-bottom:.6rem">
+          🔓 DESBLOQUEAR INFORME COMPLETO · $25.000
+        </a>
+        <p style="text-align:center;font-size:.72rem;color:#64748b;margin:0">
+          Pago único por MercadoPago · Acceso instantáneo en pantalla
+        </p>
       </div>
 
-      <!-- ÁREA DESBLOQUEADA -->
-      <div id="bloque-desbloqueado" style="display:none;margin-top:1.5rem;background:rgba(201,168,76,0.05);border:1px solid #c9a84c;padding:1.5rem">
-        <h4 style="color:#c9a84c;margin-top:0;font-family:'Bebas Neue',sans-serif;font-size:1.4rem">DIAGNÓSTICO TÉCNICO Y MARGEN DETALLADO</h4>
-        <p id="det-margen" style="font-size:.9rem;color:#e2e8f0"></p>
-        <p id="det-gastos" style="font-size:.85rem;color:#94a3b8;line-height:1.6"></p>
-        <p id="det-bancos" style="font-size:.85rem;color:#94a3b8;line-height:1.6"></p>
-        
-        <div style="border-top:1px solid rgba(255,255,255,0.1);margin-top:1rem;padding-top:1rem">
-          <p style="font-size:.8rem;color:#64748b;line-height:1.5;margin:0">
-            ⚖️ <strong>Disclaimer Legal:</strong> Este diagnóstico constituye un informe técnico orientativo basado en los parámetros cargados y la normativa vigente de ARCA (Ley 24.977 y modif.). Recordá que ARCA no solo analiza tu facturación emitida, sino la relación directa entre tus gastos declarados y los ingresos en el sistema bancario. Este cálculo no sustituye el análisis técnico letrado de oficio ni constituye patrocinio judicial automático.
-          </p>
-        </div>
+      <!-- Disclaimer legal -->
+      <div style="padding:1rem 1.2rem;border:1px solid rgba(255,255,255,0.06);font-size:.75rem;color:#64748b;line-height:1.7">
+        ⚖️ <strong style="color:#94a3b8">Disclaimer:</strong> Este diagnóstico es un informe técnico orientativo basado en los parámetros cargados y la normativa vigente (Ley 24.977 y modif.). No sustituye el asesoramiento profesional personalizado ni constituye patrocinio judicial.
       </div>
-
     </div>
-
   </div>
 
 </section>
 
 <script>
-// ESCALAS ARCA PARAMETRIZADAS (Valores base)
-const topesARCA = {
-  'A': 6450000, 'B': 9450000, 'C': 13250000, 'D': 16450000,
-  'E': 19350000, 'F': 24250000, 'G': 29000000, 'H': 44000000,
-  'I': 49250000, 'J': 56400000, 'K': 68000000
+// Topes de facturación por categoría 2026 (en ARS)
+const topesCat = {
+  servicios: { A:2109173, B:3163759, C:4427263, D:6164736, E:8860531, F:12143318, G:15951108, H:20766441 },
+  bienes:    { A:2109173, B:3163759, C:4427263, D:6164736, E:8860531, F:12143318, G:15951108, H:20766441, I:25582001, J:34109335, K:42636669 }
 };
 
-function actualizarCategoriasDisponibles() {
-  const act = document.getElementById('eval-actividad').value;
-  const optsBienes = document.querySelectorAll('.opt-bienes');
-  optsBienes.forEach(opt => {
-    opt.style.display = (act === 'servicios') ? 'none' : 'block';
-  });
-  if (act === 'servicios' && ['I','J','K'].includes(document.getElementById('eval-categoria').value)) {
-    document.getElementById('eval-categoria').value = 'H';
-  }
-}
+function generarDiagnostico() {
+  const tipo          = document.getElementById('calc-tipo').value;
+  const categoria     = document.getElementById('calc-categoria').value;
+  const facturacion   = parseFloat(document.getElementById('calc-facturacion').value) || 0;
+  const gastos        = parseFloat(document.getElementById('calc-gastos').value) || 0;
+  const acreditaciones= parseFloat(document.getElementById('calc-acreditaciones').value) || 0;
 
-function procesarEvaluacion() {
-  const act = document.getElementById('eval-actividad').value;
-  const cat = document.getElementById('eval-categoria').value;
-  const fact = parseFloat(document.getElementById('eval-facturacion').value) || 0;
-  const gastos = parseFloat(document.getElementById('eval-gastos').value) || 0;
-  const bancos = parseFloat(document.getElementById('eval-bancos').value) || 0;
-
-  if (fact <= 0) {
-    alert('Por favor ingresá un monto de facturación válido.');
+  if (!tipo || !categoria || facturacion <= 0) {
+    alert('Por favor completá al menos el tipo de actividad, la categoría y la facturación.');
     return;
   }
 
-  const topeMaxCat = topesARCA[cat];
-  const topeMaxRegimen = act === 'servicios' ? topesARCA['H'] : topesARCA['K'];
-  const porcentajeCat = (fact / topeMaxCat) * 100;
-  
-  // Límite legal según Ley 24.977 (40% de Cat H para servicios / 80% de Cat K para bienes)
-  const limiteGastosPermitido = topeMaxRegimen * (act === 'servicios' ? 0.40 : 0.80);
+  const topes    = topesCat[tipo];
+  const tope     = topes[categoria];
 
-  document.getElementById('paso-resultado').style.display = 'block';
-
-  const badge = document.getElementById('res-badge-nivel');
-  const titulo = document.getElementById('res-titulo-riesgo');
-
-  // EVALUACIÓN DE NIVELES DE RIESGO
-  if (fact > topeMaxCat || (act === 'servicios' && cat === 'H' && fact > topesARCA['H']) || gastos > limiteGastosPermitido) {
-    badge.textContent = 'RIESGO CRÍTICO · EXCLUSIÓN PROBABLE';
-    badge.style.background = '#ef4444';
-    badge.style.color = '#fff';
-    titulo.textContent = '⚠️ ALERTA DE EXCLUSIÓN DE OFICIO DETECTADA';
-  } else if (porcentajeCat >= 80 || (bancos * 12) > fact) {
-    badge.textContent = 'RIESGO ALTO · ZONA DE REVISIÓN';
-    badge.style.background = '#f59e0b';
-    badge.style.color = '#000';
-    titulo.textContent = '⚡ DESFASE DE MÉTRICAS RESPECTO A TU CATEGORÍA';
-  } else {
-    badge.textContent = 'RIESGO BAJO · MARGEN OPERATIVO';
-    badge.style.background = '#22c55e';
-    badge.style.color = '#000';
-    titulo.textContent = '✅ DENTRO DE LOS LÍMITES PERMITIDOS POR ARCA';
+  if (!tope) {
+    alert('La categoría seleccionada no existe para el tipo de actividad elegido.');
+    return;
   }
 
-  // ALMACENAR DETALLES PARA EL DESBLOQUEO TRAS EL PAGO DE $35.000
-  const restante = topeMaxCat - fact;
-  document.getElementById('det-margen').innerHTML = `<strong>Margen disponible en Cat. ${cat}:</strong> $${restante.toLocaleString('es-AR')} ARS (${porcentajeCat.toFixed(1)}% consumido).`;
-  
-  const pctGastosTexto = act === 'servicios' ? '40% de la categoría máxima (Cat. H)' : '80% de la categoría máxima (Cat. K)';
-  document.getElementById('det-gastos').innerHTML = gastos > limiteGastosPermitido 
-    ? `🚨 <strong>Inconsistencia en Gastos:</strong> Tus compras ($${gastos.toLocaleString('es-AR')}) superan el límite legal del ${pctGastosTexto}. RIESGO ALTO de exclusión de oficio por presunción de ocultamiento de ingresos.`
-    : `✓ <strong>Parámetro de Gastos:</strong> Tus compras declaradas están dentro de la relación de gastos permitida por la normativa vigente.`;
+  const pct      = Math.min(Math.round((facturacion / tope) * 100), 999);
+  const margen   = Math.max(tope - facturacion, 0);
+  const ratioGastos = gastos > 0 ? (gastos / facturacion) : 0;
+  const acredAnual  = acreditaciones * 12;
+  const difAcred    = Math.abs(acredAnual - facturacion);
 
-  document.getElementById('det-bancos').innerHTML = (bancos * 12) > fact 
-    ? `⚠️ <strong>Desfase en Billeteras/Bancos:</strong> Tus ingresos bancarios anualizados ($${(bancos*12).toLocaleString('es-AR')}) superan lo facturado ($${fact.toLocaleString('es-AR')}). Peligro de intimación por cruce de acreditaciones no declaradas.`
-    : `✓ <strong>Acreditaciones Bancarias:</strong> La proyección de ingresos bancarios concuerda con tu facturación emitida.`;
+  // Determinar nivel de riesgo
+  let nivel, color, icono, mensaje;
 
-  document.getElementById('paso-resultado').scrollIntoView({ behavior: 'smooth' });
-}
+  if (pct >= 90 || acredAnual > tope || ratioGastos > 0.9) {
+    nivel   = 'RIESGO CRÍTICO';
+    color   = '#ef4444';
+    icono   = '🚨';
+    mensaje = `Tu facturación acumulada representa el ${pct}% del tope de tu categoría ${categoria}. ARCA monitorea activamente este rango y puede iniciar una exclusión automática en cualquier momento. Además, ${acredAnual > facturacion ? 'tus acreditaciones en bancos y billeteras superan tu facturación declarada, lo que genera una inconsistencia fiscal grave que el sistema detecta automáticamente.' : 'tu nivel de gastos en relación a tu facturación activa alertas en el sistema de cruces automáticos.'}`;
+  } else if (pct >= 75) {
+    nivel   = 'RIESGO ALTO';
+    color   = '#f97316';
+    icono   = '⚠️';
+    mensaje = `Tu facturación acumulada representa el ${pct}% del tope de tu categoría ${categoria}. Estás en zona de alerta. ARCA cruza automáticamente estos parámetros y con el ritmo actual podrías superar el límite antes del próximo período de recategorización.`;
+  } else if (pct >= 55) {
+    nivel   = 'RIESGO MODERADO';
+    color   = '#eab308';
+    icono   = '🟡';
+    mensaje = `Tu facturación representa el ${pct}% del tope de tu categoría ${categoria}. Tenés margen pero debés monitorear tu ritmo de facturación. Si mantenés el mismo ritmo, podrías alcanzar el límite antes de fin de año.`;
+  } else {
+    nivel   = 'RIESGO BAJO';
+    color   = '#22c55e';
+    icono   = '✅';
+    mensaje = `Tu facturación representa el ${pct}% del tope de tu categoría ${categoria}. Estás dentro de los márgenes seguros por ahora. Igual es recomendable revisar el cruce con tus acreditaciones bancarias y billeteras para descartar inconsistencias.`;
+  }
 
-function desbloquearInformeSimulado() {
-  // Simulación de desbloqueo al retornar del pago de MercadoPago ($35.000)
+  // Mostrar resultados
+  document.getElementById('calc-nivel').textContent   = nivel;
+  document.getElementById('calc-nivel').style.color   = color;
+  document.getElementById('calc-icono').textContent   = icono;
+  document.getElementById('calc-alerta-box').style.borderColor = color;
+  document.getElementById('calc-alerta-box').style.background  = color === '#22c55e' ? 'rgba(34,197,94,0.08)' : color === '#eab308' ? 'rgba(234,179,8,0.08)' : color === '#f97316' ? 'rgba(249,115,22,0.08)' : 'rgba(239,68,68,0.08)';
+  document.getElementById('calc-mensaje-previo').textContent   = mensaje;
+  document.getElementById('calc-porcentaje-texto').textContent = pct + '%';
+  document.getElementById('calc-barra').style.width            = Math.min(pct, 100) + '%';
+  document.getElementById('calc-barra').style.background       = color;
+
+  // Mostrar resultado
+  document.getElementById('calc-resultado').style.display = 'block';
   setTimeout(() => {
-    document.getElementById('bloque-borroso').parentElement.style.display = 'none';
-    document.getElementById('bloque-desbloqueado').style.display = 'block';
-  }, 2000);
+    document.getElementById('calc-resultado').scrollIntoView({ behavior:'smooth', block:'start' });
+  }, 100);
 }
-     </script>   
+             </script>
+        
 <!-- MEMBRESÍA ARCA CONTROL -->
 <section style="background:#0f0e0c;padding:6rem 5%;position:relative;z-index:1;overflow:hidden" id="suscripcion">
 
