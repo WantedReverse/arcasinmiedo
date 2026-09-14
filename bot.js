@@ -130,7 +130,8 @@ bot.action(/gastos_(.+)/, (ctx) => {
     `▪ Cruce Billeteras / Bancos ·········· 🔒\n` +
     `▪ Límite de permanencia en el régimen 🔒\n` +
     `▪ Consistencia fiscal global ·········· 🔒\n\n` +
-    `💰 *Obtené tu Informe Técnico & Consultoría Legal Personalizada por $25.000 ARS*`;
+    `💰 *Obtené tu Informe Técnico & Consultoría Legal Personalizada por $25.000 ARS*\n\n`+
+    `https://www.arcasinmiedo.online/`;
 
   return ctx.reply(
     mensaje,
