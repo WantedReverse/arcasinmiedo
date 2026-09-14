@@ -1,3 +1,9 @@
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => res.send('Bot ARCA activo'));
+app.listen(PORT, () => console.log(`Servidor web activo en puerto ${PORT}`));
 const { Telegraf, Markup } = require('telegraf');
 
 const BOT_TOKEN = process.env.BOT_TOKEN || 'TU_TOKEN_DE_BOTFATHER_AQUI';
