@@ -1,13 +1,15 @@
 {
-  "name": "arca-bot-telegram",
+  "name": "arca-bot-multicanal",
   "version": "1.0.0",
-  "description": "Bot Calculadora de Riesgo ARCA",
+  "description": "Bot de Calculadora de Riesgo ARCA para Telegram y WhatsApp",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
   },
   "dependencies": {
-    "telegraf": "^4.16.3",
-    "express": "^4.19.2"
+    "axios": "^1.6.0",
+    "express": "^4.19.2",
+    "pdfkit": "^0.13.0",
+    "telegraf": "^4.16.3"
   }
 }
