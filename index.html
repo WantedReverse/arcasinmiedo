@@ -988,8 +988,7 @@ footer {
     <p style="position:absolute;left:-9999px;top:-9999px;font-size:1px;color:transparent" aria-hidden="true">consulta tributaria online Argentina, asesor tributario online sin turno, deuda ARCA qué hacer Argentina, me llegó intimación ARCA qué hago, recategorización monotributo defensa, excluido monotributo Argentina qué hago, Ley de Inocencia Fiscal Argentina, evasión fiscal Argentina consecuencias penales, plan de pagos ARCA cómo acceder Mis Facilidades, multa ARCA primera vez primera infracción, declaración jurada mal presentada rectificar Argentina, penal tributario Argentina abogado online, evasión simple $100 millones Argentina, regularización voluntaria ARCA sin causa penal, extinción acción penal tributaria pago Argentina</p>
   </div>
 </section>
- 
- <!-- CALCULADORA DE RIESGO MONOTRIBUTO -->
+<!-- CALCULADORA DE RIESGO MONOTRIBUTO -->
 <section id="calculadora" style="background:#0a0c0f;padding:6rem 5%;position:relative;z-index:1;overflow:hidden">
 
   <div style="position:absolute;top:-50%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none"></div>
@@ -1126,12 +1125,13 @@ footer {
           </ul>
         </div>
 
-        <!-- BOTÓN DESBLOQUEAR -->
-        <a href="https://mpago.la/2GEgrGn" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;padding:1.1rem;background:#c9a84c;color:#0a0c0f;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.1em;text-decoration:none;box-sizing:border-box;margin-bottom:.6rem">
-          🔓 DESBLOQUEAR INFORME COMPLETO · $25.000
-        </a>
+        <!-- BOTÓN DESBLOQUEAR (PAGO MERCADOPAGO) -->
+        <button onclick="irAPagar()" style="display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;padding:1.1rem;background:#c9a84c;color:#0a0c0f;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.1em;border:none;cursor:pointer;box-sizing:border-box;margin-bottom:.6rem;transition:background .25s">
+          🔓 DESBLOQUEAR INFORME COMPLETO EN PDF · $25.000
+        </button>
+
         <p style="text-align:center;font-size:.72rem;color:#64748b;margin:0">
-          Pago único por MercadoPago · Acceso instantáneo en pantalla
+          Pago único por MercadoPago · Acceso e informe descargable al finalizar
         </p>
       </div>
 
@@ -1150,6 +1150,8 @@ const topesCat = {
   servicios: { A:2109173, B:3163759, C:4427263, D:6164736, E:8860531, F:12143318, G:15951108, H:20766441 },
   bienes:    { A:2109173, B:3163759, C:4427263, D:6164736, E:8860531, F:12143318, G:15951108, H:20766441, I:25582001, J:34109335, K:42636669 }
 };
+
+let ultimoDiagnostico = null;
 
 function generarDiagnostico() {
   const tipo          = document.getElementById('calc-tipo').value;
@@ -1175,7 +1177,6 @@ function generarDiagnostico() {
   const margen   = Math.max(tope - facturacion, 0);
   const ratioGastos = gastos > 0 ? (gastos / facturacion) : 0;
   const acredAnual  = acreditaciones * 12;
-  const difAcred    = Math.abs(acredAnual - facturacion);
 
   // Determinar nivel de riesgo
   let nivel, color, icono, mensaje;
@@ -1202,7 +1203,11 @@ function generarDiagnostico() {
     mensaje = `Tu facturación representa el ${pct}% del tope de tu categoría ${categoria}. Estás dentro de los márgenes seguros por ahora. Igual es recomendable revisar el cruce con tus acreditaciones bancarias y billeteras para descartar inconsistencias.`;
   }
 
-  // Mostrar resultados
+  // Guardar datos calculados localmente para recuperarlos post-pago
+  ultimoDiagnostico = { tipo, categoria, facturacion, gastos, acreditaciones, nivel, pct, margen, mensaje };
+  localStorage.setItem('datos_informe_arca', JSON.stringify(ultimoDiagnostico));
+
+  // Mostrar resultados preliminares
   document.getElementById('calc-nivel').textContent   = nivel;
   document.getElementById('calc-nivel').style.color   = color;
   document.getElementById('calc-icono').textContent   = icono;
@@ -1213,14 +1218,60 @@ function generarDiagnostico() {
   document.getElementById('calc-barra').style.width            = Math.min(pct, 100) + '%';
   document.getElementById('calc-barra').style.background       = color;
 
-  // Mostrar resultado
+  // Mostrar bloque de resultado
   document.getElementById('calc-resultado').style.display = 'block';
   setTimeout(() => {
     document.getElementById('calc-resultado').scrollIntoView({ behavior:'smooth', block:'start' });
   }, 100);
 }
-             </script>
-        
+
+// Redirigir al link de pago
+function irAPagar() {
+  if (!ultimoDiagnostico) {
+    alert('Primero debés realizar la evaluación gratuita.');
+    return;
+  }
+  window.location.href = 'https://mpago.la/2GEgrGn';
+}
+
+// PROCESAR DESCARGA AUTOMÁTICA AL RETORNAR DE MERCADOPAGO
+async function solicitarPDF(datos) {
+  try {
+    const response = await fetch('https://arcasinmiedo-1.onrender.com/generar-pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos)
+    });
+
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Informe_Riesgo_ARCA_${datos.categoria}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    }
+  } catch (err) {
+    console.error('Error al descargar el PDF:', err);
+  }
+}
+
+// Al cargar la página, verificar si viene de un pago exitoso
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const status = urlParams.get('status') || urlParams.get('collection_status') || urlParams.get('pago');
+  const datosGuardados = localStorage.getItem('datos_informe_arca');
+
+  if ((status === 'approved' || status === 'exitoso') && datosGuardados) {
+    const datos = JSON.parse(datosGuardados);
+    solicitarPDF(datos);
+  }
+});
+                                                                                    </script>
+     
 <!-- MEMBRESÍA ARCA CONTROL -->
 <section style="background:#0f0e0c;padding:6rem 5%;position:relative;z-index:1;overflow:hidden" id="suscripcion">
 
